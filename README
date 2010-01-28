@@ -1,0 +1,612 @@
+
+1. INTRODUCTION
+===============
+
+NQXML is a pure Ruby implementation of a non-validating XML processor. It
+includes an XML tokenizer, a SAX-style streaming XML parser, a DOM-style
+tree parser, an XML writer, and a context-sensitive callback mechanism.
+``NQ'' stands for ``Not Quite''. Please read the ``Limitations'' section
+below.
+
+NQXML started as an exercise: write a pure-Ruby parser. The code is simple,
+yet is good enough to read and write most XML documents.
+
+NQXML's parsers are non-validating. In addition, they may never fully
+conform to the XML, SAX, or DOM specifications. Instead, NQXML tries to do
+things ``the Ruby way''; for example it uses iterators instead of callbacks
+to return XML entities. NQXML may never support external entities. (Note
+that it doesn't have to support external entities, since non-validating
+parsers are not required to do so.) If you require a robust, fully
+compliant XML parser, I suggest you use expat or XMLParser (see
+``Resources'' below).
+
+Ruby is an object-oriented scripting language by Yukihiro Matsumoto. The
+official Ruby Web site (http://www.ruby-lang.org/) contains information and
+pointers to resources for this wonderful language.
+
+For pointers to information about Ruby, XML, SAX, DOM, and more, see the
+``Resources'' section below.
+
+NQXML is developed and maintained by Jim Menard (<jimm@io.com>). The latest
+version of NQXML can be found on the official NQXML Web page
+(http://www.io.com/~jimm/downloads/nqxml/).
+
+1.1. Recent Changes
+-------------------
+
+Changes in version 1.1.3:
+
+    * New ExternalID, SystemExternalID, and PublicExternalID classes.
+
+    * Doctype and EntityTag objects now holds an ExternalID object instead
+      of a string.
+
+    * Element, Attlist, and Notation classes are no longer subclasses of
+      EntityTag due to the changes mentioned previously. Instead, they are
+      subclasses of NamedEntity. The remaining args for these three are
+      stored in a new string attribute named argString until they are
+      implemented correctly.
+
+    * New test script oasis.rb runs NQXML over the OASIS test XML files. It
+      reports conformance and, with the -v flag, outputs error traces for
+      each error. (OASIS files not included.)
+
+1.2. Older Versions
+-------------------
+
+======== WARNING ========
+
+    I plan to start removing from the NQXML Web page older release versions
+    in order to save disk space. When I do so, the older versions will be
+    gone forever; there is no other code repository for NQXML. Please let
+    me know if you object.
+
+======== WARNING ========
+
+Jonathan Conway has kindly started to mirror the NQXML .tar.gz files at
+http://www.ugcs.caltech.edu/~rise/nqxml-mirror/
+(http://www.ugcs.caltech.edu/~rise/nqxml-mirror/).
+
+2. DEPENDENCIES
+===============
+
+NQXML does not require any other packages. The test suite in the tests
+directory requires the testing framework RubyUnit, found in the Ruby
+Application Archive (http://www.ruby-lang.org/en/raa.html).
+
+3. INSTALLATION
+===============
+
+See the file INSTALL for directions on how to install NQXML.
+
+4. HOW TO USE
+=============
+
+The following examples show you how to use NQXML's parsers, writer, and
+context-sensitive callback mechanism. See also the files in the examples
+directory.
+
+4.1. Parsers
+------------
+
+There are two flavors of XML parser. Both check for the well-formedness of
+documents and create ``entities'' representing XML tags and text.
+
+The first kind of parser returns entities one at a time. Perhaps the most
+well-known of this type are SAX parsers (Simple API for XML). The NQXML
+streaming parser isn't a SAX parser because it doesn't use callbacks to
+return entities. Instead, the streaming parser iterates over the entities
+via calls to NQXML::StreamingParser.each.
+
+The second kind of parser creates a tree of entity objects in memory and
+returns a document object containing the document prolog, object tree, and
+epilogue. The Document Object Model (DOM) is often used by these parsers.
+The NQXML tree parser isn't a DOM parser because it doesn't use exactly the
+same class names or hierarchy for the elements contained in the
+NQXML::Document object.
+
+4.2. Creating XML Output
+------------------------
+
+An XML writer can be used to build well-formed XML output. The
+NQXML::Writer has two ways of doing this. First, there are methods that
+output tags, attributes, and text bit-by-bit. For this purpose, the writer
+class has an interface similar to James Clark's
+com.jclark.xml.output.XMLWriter Java class.
+
+Additionally, the writeDocument method accepts an NQXML::Document and
+prints out the entire document's XML.
+
+4.3. Examples
+-------------
+
+4.3.1. Checking an XML document for well-formedness
+
+The code in Example 1 shows an NQXML::StreamingParser being used to check
+the well-formedness of an XML document. First we create the parser and hand
+it either an XML string or a readable object (for example, IO, File, or
+Tempfile). Next, we iterate over all of the entities in the document. We
+ignore them because we are only interested in finding any errors. If an
+NQXML::ParserError exception is raised, the document is not well-formed.
+
+Example 1. Checking a document for well-formedness
+
+	require 'nqxml/streamingparser'
+	begin
+	    parser = NQXML::StreamingParser.new(string_or_readable)
+	    parser.each { | entity | }
+	rescue NQXML::ParserError => ex
+	    puts "parser error on line #{ex.line()}," +
+	        " col #{ex.column()}: #{$!}"
+	end
+
+4.3.2. Using the streaming parser
+
+The code in Example 2 uses an NQXML::StreamingParser to visit each entity
+in an XML stream and print its class name.
+
+The first step is to override the method to_s in each entity subclass with
+a version that prints the class name.
+
+See the file printEntityClassNames.rb in the examples directory for a
+complete version of this script.
+
+Example 2. Using the streaming parser
+
+	require 'nqxml/streamingparser'
+
+	# Override the `to_s()' method of all Entity classes that
+	# have one.
+	module NQXML
+	    class Entity; def to_s; return "I'm an #{self.class}."
+	        end; end
+	    class Text; def to_s; return "I'm an #{self.class}."
+	        end; end
+	end
+
+	# Here's where the fun begins.
+	begin
+	    # Create a parser.
+	    parser = NQXML::StreamingParser.new(string_or_readable)
+	    # Start parsing and returning entities.
+	    parser.each { | entity | puts entity.to_s }
+	rescue NQXML::ParserError => ex
+	    puts "parser error on line #{ex.line()}," +
+	        " col #{ex.column()}: #{$!}"
+	end
+
+4.3.3. Using the tree parser
+
+Using the NQXML::TreeParser class is a bit different than using
+NQXML::StreamingParser. Calling the tree parser's constructor causes the
+XML to be parsed. You may then request an NQXML::Document from the parser
+and walk the document's object tree or iterate over the entities stored in
+the document's prolog and epilogue collections.
+
+See the file reverseTags.rb in the examples directory for a more complete
+example of using NQXML::TreeParser.
+
+Example 3. Using the tree parser
+
+	require 'nqxml/treeparser'
+	begin
+	    # Creating a TreeParser parses the input. We immediately
+	    # ask for the Document object.
+	    doc = NQXML::TreeParser.new(string_or_readable).document
+
+	    # Print the entities in the document's prolog.
+	    doc.prolog.each { | entity | puts entity.to_s }
+
+	    # Do something with the nodes in the document.
+	    rootNode = doc.rootNode
+	    puts "The root entity is #{rootNode.entity}"
+	    # ...
+	rescue NQXML::ParserError => ex
+	    puts "parser error on line #{ex.line()}," +
+	        " col #{ex.column()}: #{$!}"
+	end
+
+4.3.4. Traversing a document object
+
+Document nodes have many ways to traverse themselves and their children. A
+node has the attributes :children (an Array), :parent (an NQXML::Node), and
+:entity (some subclass of NQXML::Entity). Other useful methods of node
+include addChild, firstChild, nextSibling, and previousSibling.
+
+Perhaps the most useful thing to remember is that :children is an Array.
+That means you can iterate over it and call any of the module Enumerable's
+methods like each, collect, and detect.
+
+Example 4. Finding a node
+
+	desiredNode = document.rootNode.children.detect { | node |
+	    entity = node.entity
+	    entity.instance_of?(NQXML::Tag) &&
+	        entity.name == 'repeatedTagName' &&
+	        entity.attrs['uniqueIdentifier'] == '12345'
+	}
+
+4.3.5. Using the Dispatcher
+
+The NQXML::Dispatcher class by David Alan Black allows you to register
+handlers (callbacks) for entering and/or exiting a given context. This
+section comes from the RDTool documentation found in the source code for
+NQXML::Dispatcher.
+
+4.3.5.1. Create a New Dispatcher
+
+	nd = NQXML::Dispatcher.new(args)
+
+<args> are same as for NQXML::StreamingParser.
+
+4.3.5.2. Register Handlers For Various Events
+
+The streaming parser provides a stream of four types of entity: (1) element
+start-tags, (2) element end-tags, (3) text segments, and (4) comments. You
+can register handlers for any or all of these. You do this by writing a
+code block which you want executed every time one of the four types is
+encountered in the stream in a certain context.
+
+"Context," in this context, means nesting of elements -- for instance,
+(book(chapter(paragraph))). See the examples, below, for more on this.
+
+The handler will return the entity that triggered it back to the block, so
+the block should be prepared to grab it. (See documentation for
+NQXML::StreamingParser and other components of NQXML for more information
+on this.)
+
+Note: when you register a handler, you must specify an event, a context,
+and an action (block). The event must be a symbol. The context may be a
+list of strings, a list of symbols, an array of strings, or an array of
+symbols.
+
+Examples:
+
+    1. Register a handler for starting an element. Arguments are: context
+    and a block, where context is an array of element names, in order of
+    desired nesting, and block is a block.
+
+	# For every new <chapter> element inside a <book> element:
+	nd.handle(:start_element, [ :book, :chapter ] ) { |e|
+	  puts "Chapter starting"
+	}
+
+    2. Register a handler for dealing with text inside an element:
+
+	# Print book chapter titles in bold (LaTex):
+	nd.handle(:text, "book", "chapter", "title" ) { |e|
+	  puts "\\textbf{#{e.text}}"
+	}
+
+    3. Register a handler for end of an element.
+
+	nd.handle(:end_element, %w{book chapter} ) { |e|
+	  puts "Chapter over"
+	}
+
+    4. Register a handler for all XML comments:
+
+	# Note that this can be done one of two ways:
+	nd.handle(:comment) { |c| puts "Comment: #{c} }
+	nd.handle(:comment, "*") { |c| puts "Comment: #{c} }
+
+4.3.5.3. Begin the Parse
+
+	nd.start()
+
+4.3.5.4. Wildcards
+
+NQXML::Dispatcher offers a lightweight wildcard facility. The single
+wildcard character "*" may be used as the last item in specifying a
+context. This is a "one-or-more" wildcard. See below for further
+explanation of its use.
+
+4.3.5.5. How NQXML::Dispatcher matches
+contexts
+
+In looking for a match between the current event and context with its list
+of registered event/context handlers, the Dispatcher looks first for an
+exact match. Then it starts peeling off context from the left (e.g., if it
+doesn't find a match for book/chapter/paragraph, it looks next for
+chapter/paragraph). If no exact match can be found that way, it reverts to
+the full context specification and starts replacing right-most items with
+"*". It works leftward through the items, looking for a match.
+
+Some examples:
+
+If you define callbacks for these:
+
+    1. [book chapter paragraph bold]
+
+    2. [paragraph bold]
+
+    3. [book chapter *]
+
+    4. [chapter *]
+
+then the following matches will hold:
+
+    * [book intro paragraph bold] matches 2
+
+    * [bold] no match
+
+    * [book chapter paragraph] matches 3
+
+    * [chapter paragraph] matches 4
+
+    * [book appendix chapter figure] matches 4
+
+4.3.6. Writing XML
+
+The NQXML::Writer class creates and outputs well-formed XML. There are two
+ways to use a writer: call methods that create the XML a bit at a time or
+create an NQXML::Document object and hand it to the writer.
+
+For writing XML a bit at a time, NQXML::Writer has an interface similar to
+James Clark's com.jclark.xml.output.XMLWriter Java class. For printing
+entire document trees, there is NQXML::Writer.writeDocument.
+
+A writer's constructor has two arguments. The first is the object to which
+the XML is written. This argument can be any object that responds to the <<
+method, including IO, File, Tempfile, String, and Array objects.
+
+The second, optional boolean argument to the constructor activates some
+simple ``prettifying'' code that inserts newlines after tags' closing
+brackets, indents opening tags, and minimizes empty tags. This behavior is
+turned off by default. The ``prettifying'' behavior can be turned on or off
+at any time by modifying the writer's prettify attribute.
+
+Writers check to make sure that tags are nested properly. If there is an
+error, an NQXML::WriterError exception is raised.
+
+When a writer outputs an empty tag such as <foo attr="x"/>, it normalizes
+the tag by printing <foo attr="x"></foo>.
+
+Example 5. Writing XML a tag at a time
+
+	require 'nqxml/writer'
+
+	# Create a write and hand it an IO object. Tell the writer to
+	# insert newlines to make the output a bit easier to read.
+	writer = NQXML::Writer.new($stdout, true)
+
+	# Write a processing instruction.
+	writer.processingInstruction('xml', 'version="1.0"')
+
+	# Write an open tag and a close tag. This will produce
+	# <tag1 attr1="foo"/>.
+	writer.startElement('tag1')
+	writer.attribute('attr1', 'foo')
+	writer.endElement('tag1')
+
+	# Write text. Automatically closes tag first. All '&', '<',
+	# '>', and single- and double-quote characters are replaced
+	# with their markup equivalents.
+	#
+	# (Note that the newline inserted after the previous tag will
+	# be part of this text. To avoid this, call
+	# "writer.prettify = false" to turn off this behavior).
+	writer.write("  data with <funky & groovy chars>\n")
+
+	writer.endElement('tag2')
+
+Example 6. Writing a document created by a tree parser
+
+	require 'nqxml/treeparser'
+	require 'nqxml/writer'
+
+	# Open a file, create a tree parser and give it the file, and
+	# retrieve the parsed document. Gee, this comment is longer
+	# than the code.
+	doc = NQXML::TreeParser.new(File.open('doc.xml')).document
+
+	# Create a writer and point it to stdout
+	writer = NQXML::Writer.new($stdout)
+	writer.writeDocument(doc)
+
+	# The last newline, since it is outside the root entity of
+	# the document and is purely whitespace, is ignored by the
+	# NQXML::TreeParser. Let's add a newline to our output.
+	writer.write("\n")
+
+Example 7. Writing a lovingly hand-crafted document
+
+	require 'nqxml/document'
+	require 'nqxml/writer'
+
+	# Create a document object.
+	doc = NQXML::Document.new()
+
+	# Create a processing instruction and add it to the
+	# document prolog.
+	pi = NQXML::ProcessingInstruction.new('xml',
+	    {'version' => '1.0'}))
+	doc.addToProlog(pi)
+	doc.setRoot(NQXML::Tag.new('root', {'type' => 'manual'}))
+
+	# Add two sub-nodes of the root node. We save one node but
+	# will find the other later.
+	tag = NQXML::Tag.new('thing', {'id' => '1'}))
+	thing1Node = doc.rootNode.addChild(tag)
+
+	# All on one line:
+	doc.rootNode.addChild(NQXML::Tag.new('thing', {'id' => '2'}))
+
+	# Add a child to thing1.
+	thing1Node.addChild(NQXML::Text.new('this is some text'))
+
+	# Find thing2 under root.
+	thing2Node = doc.rootNode.children.detect { | n |
+	    n.entity.instance_of?(NQXML::Tag) &&
+	        n.entity.name == 'thing' &&
+	        n.entity.attrs['id'] == '2'
+	}
+
+	# Add a child to thing2.
+	thing2Node.addChild(NQXML::Text.new('thing 2 node text'))
+
+	# Create a writer and point it to a string.
+	str = ''
+	writer = NQXML::Writer.new(str)
+	writer.prettify = true
+
+	# Write the document to the string.
+	writer.writeDocument(doc)
+
+	# Output the XML string.
+	print str
+
+4.4. More Example Scripts
+-------------------------
+
+Here are short descriptions of each of the examples found in the examples
+directory.
+
+    * dumpXML.rb (../dumpXML.rb) dumps an XML file as text, using the
+      streaming parser.
+
+    * parseTestStream.rb (../parseTestStream.rb) runs the streaming parser
+      over either a single file or all .xml files in a directory.
+
+    * parseTestTree.rb (../parseTestTree.rb) runs the tree parser over
+      either a single file or all .xml files in a directory.
+
+    * printEntityClassNames.rb (../printEntityClassNames.rb) is a complete
+      version of Example 2 above. It overrides the to_s of a number of
+      entity subclasses in order to print the entity's class name. A
+      NQXML::StreamingParser calls to_s for each entity in the XML file.
+
+    * reverseTags.rb (../reverseTags.rb) uses the DOM parser to read an XML
+      document, reverse the order of all tags under the root tag
+      recursively, and output the resulting XML.
+
+    * reverseText.rb (../reverseText.rb) uses the tokenizer to reprint an
+      XML document with all text reversed.
+
+    * write.rb (write.rb) uses the NQXML::Writer class to output a simple
+      XML file to $stdout.
+
+    * writeParsedDoc.rb (../writeParsedDoc.rb) uses the NQXML::Writer class
+      to output an NQXML::Document object to $stdout. The document is
+      created by parsing an XML file with an NQXML::TreeParser.
+
+    * writeManualDoc.rb (../writeManualDoc.rb) creates anNQXML::Document
+      node by node and writes it to a string. The string is written to
+      $stdout
+
+There are also a few XML data files in the examples directory.
+
+    * data.xml (data.xml)
+
+    * doc.xml (doc.xml)
+
+5. LIMITATIONS
+==============
+
+    * No support for any encoding other than 8-bit ASCII. In particular, no
+      support for UTF-8 or UTF-16 (both required by the XML spec).
+
+    * Not a validating parser, though it does check for well-formed
+      documents.
+
+    * Not all XML well-formedness checks required of a non-validating
+      parser are made. These checks are being added. Here's the list of
+      those that are missing. The values in parentheses are the internal
+      document links for the HTML version of the XML spec.
+
+      * External Subset (#ExtSubset)
+
+      * PE Between Declarations (#PE-between-Decls) (Parameter entity
+        replacement text must match the extSubsetDecl ::= ( markupdecl |
+        conditionalSect | DeclSep) *, but NQXML does not yet recognize
+        conditional sections).
+
+      * PEs in Internal Subset (#wfc-PEinInternalSubset)
+
+      * No External Entity References (in attribute values)
+        (#NoExternalRefs)
+
+      * Entity Declared (when standalone='yes') (#wf-entdeclared)
+        (Currently all entities must be declared when references to them
+        are parsed.)
+
+      * No Recursion (#norecursion) (of entity references)
+        <emphasis>Failing to enforce this constraint means that NQXML can
+        enter an infinite loop.</emphasis>
+
+    * No support for DTDs (though internal ENTITY tags are parsed). For
+      example, attribute default values defined in the DOCTYPE are not yet
+      used to modify attributes with missing values. Note that supplying
+      default attribute values is <emphasis>not</emphasis> required for a
+      non-validating processor such as NQXML.
+
+    * Doesn't follow external references (therefore doesn't read ENTITY
+      tags from an external DTDs). Note that following external references
+      is <emphasis>not</emphasis> required for a non-validating processor.
+
+    * ELEMENT, ATTLIST, and NOTATION tags simply slurp in their arguments
+      and present them as strings. This will be fixed in a future release
+      (but will probably break code that relies on the contents of the
+      entities' :text attribute).
+
+6. RESOURCES
+============
+
+The official Ruby Web site (http://www.ruby-lang.org/) contains an
+introduction to Ruby, the Ruby Application Archive (RAA)
+(http://www.ruby-lang.org/en/raa.html), and pointers to more information.
+
+The WWW Consortium (http://www.w3.org/) Web site contains a wealth of
+information about XML (http://www.w3.org/), SAX (http://www.w3.org/), DOM
+(http://www.w3.org/), and much more.
+
+The SAX specification is defined at http://www.megginson.com/SAX/
+(http://www.megginson.com/SAX/).
+
+James Clark's expat (http://www.jclark.com/xml/expat.html) is an XML parser
+written in C. is the golden standard for XML parsers. It is the library
+upon which the Ruby standard library's xmlparser.rb is built.
+
+XMLParser by Yoshida Masato is a Ruby library built on top of expat. It is
+available at the Ruby Application Archive.
+
+"Programming Ruby, The Pragmatic Programmer's Guide", by David Thomas and
+Andrew Hunt, is a well-written and practical introduction to Ruby. Its Web
+page (http://www.progmaticprogrammer.com/ruby/index.html) also contains a
+wealth of Ruby information. Though the book is available online, I
+encourage you to purchase a copy.
+
+Jonathan Conway has kindly started to mirror the NQXML .tar.gz files at
+http://www.ugcs.caltech.edu/~rise/nqxml-mirror/
+(http://www.ugcs.caltech.edu/~rise/nqxml-mirror/).
+
+Have I mentioned the NQXML home page
+(http://www.io.com/~jimm/downloads/nqxml/) yet? I have? Never mind.
+
+7. BUGS
+=======
+
+This list does not include the limitations listed above. There are
+currently no known bugs, but plenty of issues. See the TODO file.
+
+Please send comments and bug reports to Jim Menard at <jimm@io.com>.
+
+8. COPYING
+==========
+
+NQXML is copyrighted free software by Jim Menard and is released under the
+same license as Ruby. See the Ruby license
+(http://www.ruby-lang.org/en/LICENSE.txt).
+
+NQXML may be freely copied in its entirety providing this notice, all
+source code, all documentation, and all other files are included.
+
+NQXML is copyright (c) 2001 by Jim Menard.
+
+9. WARRANTY
+===========
+
+THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+

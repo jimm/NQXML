@@ -1,0 +1,52 @@
+NQXML is currently owned and developed by Jim Menard, jimm@io.com. The
+following people have kindly submitted bug reports, bug fixes, and
+suggestions for improvement.
+
+Bug fixes and suggestions have come from
+
+* TAKAHASHI 'Maki' Masayoshi   E-mail: maki@open-news.com
+	install.rb bug, tokenizer error, test code changes, error
+	recovery, tokenizer undefined param entity check fix, public id
+	literal fixes, distinction between processing instructions and xml
+	declaration instruction, oasis.rb script
+
+* David Alan Black <dblack@candle.superlink.net>
+	documentation errors, tokenizer initializer error,
+	NQXML::Dispatcher
+
+* Olliver Robert <Ollivier.Robert@eurocontrol.fr>
+	corrected link to RAA
+
+* Pete Kernan <pete@vilya.pjk>
+	INSTALL file error, problems running tests with previous install
+	of NQXML
+
+* Colin Steele <colin@webg2.com>
+	found entity replacement bug introduced in 0.5.0
+
+* Hiroshi "Nahi" NAKAMURA <nahi@keynauts.com, nakahiro@sarion.co.jp>
+	documentation errors, document object initializer, tokenizer line
+	break substitution correction, spelling errors
+
+* Dan Munk <danmunk@hotmail.com>
+	found newline-in-comment bug
+
+* Sean Russel <srussell@rhino.f01.r6.fs.fed.us>
+	entity attributes correctly converted to strings when output
+
+* Huayin Wang <wang@rjika.com>
+	release 1.0.1 broke the writer tests (only difference in output
+	is whitespace between prolog entities)
+
+* Lyle Johnson <ljohnson@resgen.com>
+	suggested addition of prettifying code to writer
+
+* Jonathan Conway <rise@knavery.net>
+	mirroring all NQXML .tar.gz files at
+	http://www.ugcs.caltech.edu/~rise/nqxml-mirror/
+
+* Tobias Reif <tobiasreif@pinkjuice.com> found bug in XMLDecl attribute
+	handling, found eight-bit character handling bug, found Doctype
+	PUBLIC id quotation bug, suggested new features, found
+	documentation error
+

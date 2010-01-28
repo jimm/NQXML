@@ -1,0 +1,15 @@
+<catalog>
+  <part>
+    <sku>123</sku>
+    <description>A fine example of the color puce.</description>
+    <price currency="USD">34.56</price>
+    <in-stock>12</in-stock>
+  </part>
+  <part>
+    <sku>10101101</sku>
+    <description>The B-flat above middle C.</description>
+    <price currency="USD">0.02</price>
+    <price currency="GBP">500.22</price>
+    <in-stock>244</in-stock>
+  </part>
+</catalog>

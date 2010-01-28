@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- comments allowed in preamble -->
+<!DOCTYPE doc SYSTEM "ignored" [
+  <!-- comments allowed in doctype -->
+
+  <!ENTITY app "&lt;b&gt;Author Name&lt;/b&gt;">
+  <!ENTITY inner "xyzzy">
+  <!ENTITY outer "&inner;"> <!-- will be xyzzy -->
+]>
+<doc>
+  <author>
+    <name>Author's Name</name>
+    <contact-info>
+      <address type="business">
+	<street>42 Ruby Street</street>
+	<city>Ruby</city><state>NY</state><country>USA</country>
+      </address>
+      <address type="favorite bar">
+	<street>43 Ruby Street</street>
+	<city>Ruby</city><state>NY</state><country>USA</country>
+      </address>
+    </contact-info>
+    <mental-state state="blithering idiot"/>
+  </author>
+  <p class="body">Here is a paragraph about &app;.</p>
+  <p class="body">Here is another, with some <b>bold</b>text.</p>
+  <p class="no-class at all">should see xyzzy: &outer;</p>
+  <a><b><c><d><e><f><g/><h/></f></e></d></c></b></a>
+</doc>

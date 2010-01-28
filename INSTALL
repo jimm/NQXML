@@ -1,0 +1,32 @@
+By default, the install script for NQXML creates a directory under Ruby's
+`site_local' directory (usually /usr/local/lib/ruby/site_local/X.Y) called
+`nqxml'. You may need root permissions to create this directory, depending
+upon your operating system. Alternately, you may specify another directory
+by using the command line option `--install-dir'.
+
+You can copy the directory nqxml anywhere, as long as your Ruby
+installation can find it. For example, you can specify the directory
+*above* nqxml in the RUBYLIB environment variable.
+
+Installing NQXML
+================
+
+* Extract the distribution. This creates a directory named nqxml-<version>
+  (where <version> is the NQXML version number).
+
+    tar -xzf nqxml-<version>.tar.gz
+    cd nqxml-<version>
+
+* Run the test suite, if desired (requires RubyUnit).
+
+    cd tests
+    ruby -I .. test.rb
+    cd ..
+
+* Install NQXML to Ruby's `site_local' directory.
+
+    ruby install.rb
+
+(or)
+
+    ruby install.rb --install-dir=my_directory

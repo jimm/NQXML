@@ -1,0 +1,835 @@
+cd /home/jimm/src/nqxml/tests/
+cd ~/src/nqxml/tests && ./oasis.rb -v
+../../xmlconf/xmltest/valid/sa/049.xml:1:text data seen inside document prolog
+../nqxml/streamingparser.rb:67:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/sa/050.xml:1:text data seen inside document prolog
+../nqxml/streamingparser.rb:67:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/sa/051.xml:1:text data seen inside document prolog
+../nqxml/streamingparser.rb:67:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/sa/062.xml:1:3648 out of char range
+../nqxml/utils.rb:27:in `chr'
+../nqxml/utils.rb:27:in `replaceCharacterRefs'
+../nqxml/utils.rb:27:in `gsub'
+../nqxml/utils.rb:27:in `replaceCharacterRefs'
+../nqxml/tokenizer.rb:824:in `nextText'
+../nqxml/tokenizer.rb:866:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/sa/063.xml:1:DOCTYPE tag missing '>'
+../nqxml/tokenizer.rb:721:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/sa/064.xml:1:65536 out of char range
+../nqxml/utils.rb:27:in `chr'
+../nqxml/utils.rb:27:in `replaceCharacterRefs'
+../nqxml/utils.rb:27:in `gsub'
+../nqxml/utils.rb:27:in `replaceCharacterRefs'
+../nqxml/tokenizer.rb:824:in `nextText'
+../nqxml/tokenizer.rb:866:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/sa/082.xml:2:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/sa/083.xml:2:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+warning: ENTITY 'e' already defined; first definition will be used
+../../xmlconf/xmltest/valid/sa/089.xml:1:65536 out of char range
+../nqxml/utils.rb:27:in `chr'
+../nqxml/utils.rb:27:in `replaceCharacterRefs'
+../nqxml/utils.rb:27:in `gsub'
+../nqxml/utils.rb:27:in `replaceCharacterRefs'
+../nqxml/tokenizer.rb:539:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/sa/091.xml:3:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/sa/097.xml:3:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/sa/100.xml:2:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/not-sa/011.xml:2:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/not-sa/012.xml:2:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/not-sa/026.xml:3:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/not-sa/031.xml:2:entity reference '&e;' is undefined
+../nqxml/tokenizer.rb:835:in `nextText'
+../nqxml/tokenizer.rb:866:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/ext-sa/001.xml:3:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/ext-sa/002.xml:3:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/ext-sa/003.xml:3:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/ext-sa/004.xml:3:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/ext-sa/005.xml:4:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/ext-sa/006.xml:4:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/ext-sa/007.xml:3:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/ext-sa/008.xml:3:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/ext-sa/009.xml:3:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/ext-sa/010.xml:3:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/ext-sa/011.xml:3:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/ext-sa/012.xml:4:quoted literal not quoted in tag e3
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/ext-sa/013.xml:8:quoted literal not quoted in tag x
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/xmltest/valid/ext-sa/014.xml:3:quoted literal not quoted in tag e
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P82/ibm82v01.xml:10:quoted literal not quoted in tag unparsed1
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P79/ibm79v01.xml:6:quoted literal not quoted in tag epe
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P78/ibm78v01.xml:8:quoted literal not quoted in tag epe1
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P70/ibm70v01.xml:12:quoted literal not quoted in tag ge2
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P69/ibm69v02.xml:4:quoted literal not quoted in tag pe1
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P68/ibm68v02.xml:4:quoted literal not quoted in tag pe1
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P66/ibm66v01.xml:1:55203 out of char range
+../nqxml/utils.rb:27:in `chr'
+../nqxml/utils.rb:27:in `replaceCharacterRefs'
+../nqxml/utils.rb:27:in `gsub'
+../nqxml/utils.rb:27:in `replaceCharacterRefs'
+../nqxml/tokenizer.rb:824:in `nextText'
+../nqxml/tokenizer.rb:866:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P56/ibm56v08.xml:8:quoted literal not quoted in tag image
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P54/ibm54v01.xml:22:quoted literal not quoted in tag xmltech
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P32/ibm32v02.xml:3:entity reference '&animal_content;' is undefined
+../nqxml/tokenizer.rb:835:in `nextText'
+../nqxml/tokenizer.rb:866:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P13/ibm13v01.xml:2:DOCTYPE PUBLIC public id literal contains illegal character(s)
+../nqxml/tokenizer.rb:308:in `nextPublicIdLiteral'
+../nqxml/tokenizer.rb:653:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P12/ibm12v01.xml:2:DOCTYPE PUBLIC public id literal contains illegal character(s)
+../nqxml/tokenizer.rb:308:in `nextPublicIdLiteral'
+../nqxml/tokenizer.rb:653:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P12/ibm12v02.xml:2:DOCTYPE PUBLIC public id literal contains illegal character(s)
+../nqxml/tokenizer.rb:308:in `nextPublicIdLiteral'
+../nqxml/tokenizer.rb:653:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P11/ibm11v01.xml:4:quoted literal not quoted in tag unref
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P11/ibm11v02.xml:4:quoted literal not quoted in tag unref
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P09/ibm09v03.xml:3:entity reference '&Name;' is undefined
+../nqxml/tokenizer.rb:835:in `nextText'
+../nqxml/tokenizer.rb:866:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/ibm/valid/P09/ibm09v05.xml:10:entity reference '&combine;' is undefined
+../nqxml/tokenizer.rb:835:in `nextText'
+../nqxml/tokenizer.rb:866:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/oasis/p04pass1.xml:5:malformed tag 'A.-:Ì': missing '>' after attributes
+../nqxml/tokenizer.rb:781:in `nextTag'
+../nqxml/tokenizer.rb:805:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/oasis/p11pass1.xml:6:unknown or illegal tag inside DOCTYPE tag; first 8 chars = '?>/\''">'
+../nqxml/tokenizer.rb:713:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/oasis/p66pass1.xml:1:1110764 out of char range
+../nqxml/utils.rb:27:in `chr'
+../nqxml/utils.rb:27:in `replaceCharacterRefs'
+../nqxml/utils.rb:27:in `gsub'
+../nqxml/utils.rb:27:in `replaceCharacterRefs'
+../nqxml/tokenizer.rb:824:in `nextText'
+../nqxml/tokenizer.rb:866:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/oasis/p73pass1.xml:6:quoted literal not quoted in tag ge2
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/oasis/p74pass1.xml:4:quoted literal not quoted in tag pe2
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/oasis/p75pass1.xml:3:quoted literal not quoted in tag ent
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+../../xmlconf/oasis/p76pass1.xml:5:quoted literal not quoted in tag ge
+../nqxml/tokenizer.rb:282:in `nextQuotedLiteral'
+../nqxml/tokenizer.rb:538:in `nextEntityTag'
+../nqxml/tokenizer.rb:690:in `nextDoctype'
+../nqxml/tokenizer.rb:737:in `nextBangTag'
+../nqxml/tokenizer.rb:803:in `nextBracketToken'
+../nqxml/tokenizer.rb:864:in `nextEntity'
+../nqxml/tokenizer.rb:877:in `each'
+../nqxml/streamingparser.rb:27:in `each'
+./oasis.rb:45:in `parse'
+./oasis.rb:26:in `check'
+./oasis.rb:23:in `open'
+./oasis.rb:23:in `check'
+./oasis.rb:71
+./oasis.rb:70:in `each'
+./oasis.rb:70
+*** NQXML ***
+total   ...438
+success ...384 (87.7%)
+failure ... 54 (12.3%)
+
+Compilation finished at Thu Nov 22 15:46:22

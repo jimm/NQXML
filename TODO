@@ -1,0 +1,80 @@
+This version
+============
+
+* Create new dispatcher example script.
+
+* Add it to docs and index.html.
+
+Future versions
+===============
+
+* When reading entity and param tags, what is hash val when we've seen an
+  external id (and possibly an NDATA)?
+
+* Ensure that xml preprocessing instruction only sees "version",
+  "encoding", and "standalone" tags and no others.
+
+* Ensure that xml preprocessing instruction attributes are seen in the
+  proper order. Warning; not error.
+
+* Add test code for
+
+	* Eight-bit tag names (new NAME_REGEX).
+	* "encoding" and "standalone" attrs of xml preproc instruction,
+	  including bad values.
+	* Illegal DOCTYPE SYSTEM and PUBLIC formats.
+
+* Better writer prettifying code.
+
+* Should I stop saving XML source into entities completely? What good does
+  it do, except save a few milliseconds for Writer objects that are writing
+  Document objects?
+
+* Add all XML spec well-formedness checks. See list in README file
+  LIMITATIONS section.
+
+* Everything else listed in the README file LIMITATIONS section.
+
+* Make more efficient. (Process already started.) I'm probably creating too
+  many input objects in the tokenizer.
+
+* Supply default attribute values. (Have to start paying attention to
+  ATTLIST tags first, of course.)
+
+* Comment code, including classes and methods.
+
+* Redo tokenizer:
+
+    * Change tokenizer to slurp lines or characters as needed (if input is
+      not a string). If I do, the argument to the tokenizer constructor
+      will need to respond to more than just :read (e.g., :eof?, :seek).
+
+    * How much do I care that the entire XML string is in memory? Strings
+      passed to me are probably small enough, but file names may point to
+      huge files. I could rewrite the tokenizer to use IO objects instead
+      (for example, either use the file passed to me or write the XML
+      string to a temp file). If I decide not to make this change, the next
+      item is not really necessary.
+
+    * Abstract Tokenizer's peek*, nextChar*, line, column, and pos methods,
+      etc. into a ReadStream class. If I do this, the tokenizer will have
+      to change a bit because it assumes it has access to the XML as a
+      single string.
+
+Rejected ideas
+==============
+
+* Add methods to Node that allow searches for children with specified name?
+  Nah, this isn't necessary; just iterate over node.children and check for
+  the name you want. For example (from the test code):
+
+    node = doc.rootNode.children.detect { | n |
+	n.entity.instance_of?(NQXML::Tag) && n.entity.name == 'simpleTag'
+    }
+
+Notes
+=====
+
+No start-tag, end-tag, empty-element tag, element, comment, processing
+instruction, character reference, or entity reference can begin in one
+entity and end in another.

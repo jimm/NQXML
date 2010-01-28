@@ -1,0 +1,52 @@
+ChangeLog
+Credits
+INSTALL
+Manifest
+README
+TODO
+contrib/
+	autodis_1.rb
+	autodis_2.rb
+docs/
+	Makefile
+	README.html
+	README.sgml
+	index.html
+	sgml2text.rb
+examples/
+	data.xml
+	doc.xml
+	dumpXML.rb
+	parseTestStream.rb
+	parseTestTree.rb
+	printEntityClassNames.rb
+	reverseTags.rb
+	reverseText.rb
+	write.rb
+	writeManualDoc.rb
+	writeParsedDoc.rb
+generateManifest.rb
+install.rb
+nqxml/
+	dispatcher.rb
+	document.rb
+	entities.rb
+	error.rb
+	info.rb
+	parser.rb
+	streamingparser.rb
+	tokenizer.rb
+	treeparser.rb
+	utils.rb
+	writer.rb
+release.rb
+tests/
+	dispatchertester.rb
+	foo.txt
+	oasis.rb
+	streamingparsertester.rb
+	test.rb
+	testresource.rb
+	tokenizertester.rb
+	treeparsertester.rb
+	writertester.rb

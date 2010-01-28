@@ -1,0 +1,813 @@
+2001-11-24  Jim Menard  <jimm@strategiclegal.com>
+
+	* tests/testresource.rb: changed to reflect new external id
+	classes.
+
+	* tests/tokenizertester.rb: changed to reflect new external id
+	classes.
+
+	* nqxml/tokenizer.rb (nextDoctype): create external ids.
+	(nextExternalId): factored out of new code.
+	(nextDeclSep): fixed error messages to contain '%' instead of '&'.
+
+	* nqxml/entities.rb: added new classes ExternalID,
+	SystemExternalID, and PublicExternalID.
+	(Doctype.writeXMLTo): call externalId.to_s when writing.
+	(EntityTag): constructor and attribute changed to hold external id
+	as well as text.
+	(GeneralEntityTag): changed to hold either entity value or
+	external id and NDATA decl.
+	(ParameterEntityTag): changed to hold either entity value or
+	external id.
+	(Element): superclass changed from EntityTag to NamedEntity
+	because of change in behavior and state of EntityTag. Remaining
+	args stored in string argString.
+	(Attlist): same as Element.
+	(Notation): same as Element.
+
+2001-11-22  Jim Menard  <jimm@strategiclegal.com>
+
+	* tests/oasis.rb: added this file, courtesy of TAKAHASHI
+	Masayoshi.
+
+2001-11-20  Jim Menard  <jimm@strategiclegal.com>
+
+	* tests/test.rb: run all tests in one big bunch instead of a
+	number of small bunches.
+
+2001-11-19  Jim Menard  <jimm@strategiclegal.com>
+
+	* Version 1.1.2 released.
+
+	* tests/testresource.rb (initialize): changed doctype to PUBLIC to
+	test new code. Added eight-bit char to text data.
+
+	* nqxml/entities.rb (XMLDecl.writeXMLTo): write version, encoding,
+	and standalone attributes (if they are defined) in order because
+	order is significant.
+
+	* nqxml/tokenizer.rb: removed '\xd' char from NOT_SPACES_REGEX and
+	PUBLIC_ID_LITERAL_REGEX because that char is removed from input
+	stream anyway. One fix and two mods to NAME_REGEX: I forgot to
+	backslash '.' so anything was matching; now accepts all legal
+	8-bit chars, not just 7-bit; changed anchor from '^' to '\A'.
+	Added ENCODING_NAME_REGEX.
+	(nextDoctype): save the quotes around public id literal.
+	(restOfXMLDecl): use ENCODING_NAME_REGEX to check for legal
+	"encoding" attribute name chars. Make sure "standalone" value is
+	either "yes" or "no".
+	(everywhere): made Input code inline, for speed. Makes code
+	bigger but faster.
+
+2001-08-13  Jim Menard  <jimm@io.com>
+
+	* Version 1.1.1 released.
+
+2001-08-10  Jim Menard  <jimm@io.com>
+
+	* install.rb: use File.join() instead of explicitly using slashes
+	to create install file names.
+
+	* docs/sgml2text.rb: added "command" to list of tags that need
+	deletion when writing text file.
+
+	* docs/index.html: fixed links to download pages for other
+	projects.
+
+	* tests/writertester.rb (compare_test_prettify): take new
+	indentation into account when testing prettify code. Add test for
+	empty tag.
+
+2001-08-06  Jim Menard  <jimm@io.com>
+
+	* nqxml/writer.rb (attribute): call to_s on the attribute value.
+	Indent tags when prettifying.
+	(endElement): Minimize empty tags (for example, write
+	"<empty-tag/>" instead of "<empty-tag></empty-tag>").
+
+	* Version 1.1.0 released.
+
+2001-07-24  Jim Menard  <jimm@io.com>
+
+	* release.rb: changed to reflect changes in docs directory (see
+	next item).
+
+	* docs/*: moved to using LaTeX instead of DocBook. I don't like
+	Red Hat's docbook2* tools and style sheets at all. All of the old
+	files are in the new docs/docbook directory.
+
+2001-07-23  Jim Menard  <jimm@io.com>
+
+	* nqxml/tokenizer_old.rb (initialize): removed unused attribute
+	parseLevel.
+
+2001-07-19  Jim Menard  <jimm@io.com>
+
+	* tests/*.rb: created dispatchtester.rb. Modified code to use list
+	of class names (no good reason, really). Moved some require
+	statements into testing classes.
+
+2001-07-18  Jim Menard  <jimm@io.com>
+
+	* tests/*.rb: changed references to ProcessingInstruction to
+	XMLDecl. Added new ProcessingInstruction test case data.
+
+	* nqxml/treeparser.rb (miscEntity?): added XMLDecl to list of misc
+	entities.
+
+	* nqxml/streamingparser.rb (each): modified to know about the new
+	XMLDecl class.
+
+	* nqxml/entities.rb: ProcessingInstruction made subclass of
+	NamedEntity, not NamedAttributes. New class XMLDecl (subclass of
+	NamedAttributes) created.
+
+	* nqxml/tokenizer.rb (nextPublicIdLiteral): stopped returning
+	quotation marks around public id literal. Fixed error message at
+	top.
+	(nextProcessingInstruction): modified to call either restOfXMLDecl
+	or restOfProcessingInstruction based on name seen after '<?'.
+	(restOfXMLDecl): added to capture attributes in XMLDecl and create
+	entity.
+	(restOfProcessingInstruction): added to capture text after PI name
+	and create entity.
+
+2001-07-17  Jim Menard  <jimm@io.com>
+
+	* nqxml/treeparser.rb (initialize): moved up to top of file; why
+	on earth did I ever put it at the bottom?
+
+2001-07-16  Jim Menard  <jimm@io.com>
+
+	* nqxml/document.rb (writeTo): added prettify parameter; write
+	newlines when appropriate.
+
+	* docs/README.sgml: added prettify explanation to text and
+	examples for writer.
+
+	* nqxml/writer.rb: added prettify boolean instance variable, added
+	new constructor argument to set it, and use it when writing '>' at
+	end of all tags (both start and end).
+
+2001-07-13  Jim Menard  <jimm@io.com>
+
+	* nqxml/tokenizer.rb (nextDeclSep): fixed test for undefined
+	parameter entity replacement text.
+
+2001-07-12  Jim Menard  <jimm@io.com>
+
+	* nqxml/tokenizer.rb: changed Input instance variables @string,
+	@length, and @replaceRefs to read-only (attr_reader instead of
+	attr_accessor).
+
+2001-07-10  Jim Menard  <jimm@io.com>
+
+	* docs/README.sgml: a new section describes my plan to start
+	deleting older release versions from the Web site.
+
+	* nqxml/tokenizer.rb (initialize): changed line break substitution
+	to explicitly replace "\r\n" and "\r" with "\n". The old code,
+	which replaced $/ with "\n", was incorrect because the input XML
+	file may use line breaks other than $/.
+
+	* tests/tokenizertester.rb (test_tokens): removed nop line of code.
+	(compare_tokens_with_expected): added to hold common to
+	test_tokens() and test_different_newlines().
+
+2001-07-09  Jim Menard  <jimm@io.com>
+
+	* docs/index.html: tweaked navigation bar on left-hand side of
+	page.
+
+2001-06-29  Jim Menard  <jimm@io.com>
+
+	* nqxml/tokenizer.rb (peekMatches?): removed alias :peekMatches
+	because it is not used anywhere in the code.
+	(peekChar): removed alias :peekChars and removed argument because
+	neither is used in the code anywhere.
+
+2001-06-25  Jim Menard  <jimm@io.com>
+
+	* Version 1.0.2 released.
+	
+	* tests/writertester.rb (compare_to_rsrc_xml): strip some
+	whitespace from around the expected DOCTYPE's prolog elements.
+
+	* nqxml/tokenizer.rb (nextDoctype): put quotes around quoted
+	literals in PUBLIC and SYSTEM external ids.
+	(nextPublicIdLiteral): keep quotes around quoted literal.
+
+	* tests/testresource.rb: make sure doctype's SYSTEM public id has
+	quotes around the value.
+
+2001-06-19  Jim Menard  <jimm@io.com>
+
+	* Version 1.0.1 released.
+
+	* nqxml/entities.rb (Doctype): added writeXMLTo method.
+
+2001-06-18  Jim Menard  <jimm@io.com>
+
+	* Version 1.0.0 released.
+
+	* nqxml/info.rb: finally calling this release 1.0.0 (instead of
+	0.6.4). Released 6/18/2001.
+
+2001-06-14  Jim Menard  <jimm@io.com>
+
+	* nqxml/entities.rb: explicitly convert entity attribute values to
+	strings on the way out.
+
+2001-06-13  Jim Menard  <jimm@io.com>
+
+	* docs/README.sgml: email address moved to correct place in
+	<author> tag.
+
+2001-06-08  Jim Menard  <jimm@io.com>
+
+	* nqxml/writer.rb: added some comments to the code.
+
+	* nqxml/utils.rb: added some comments to the code.
+
+	* nqxml/domparser.rb: deleted from source tree; use
+	NQXML::TreeParser instead. (DOMParser has been an alias to
+	TreeParser for a long time, and the docs warned that this would
+	happen.)
+
+2001-05-30  Jim Menard  <jimm@io.com>
+
+	* docs/index.html: added link to another of my Ruby releases,
+	RuBoids.
+
+2001-05-25  Jim Menard  <jimm@io.com>
+
+	* docs/README.sgml: links to example scripts didn't work on Web
+	site; they do now because I added "../" before each link. Fixed an
+	example script link that pointed to the wrong script. Made a few
+	minor language tweaks. Fixed a few spelling errors.
+
+2001-05-17  Jim Menard  <jimm@io.com>
+
+	* Version 0.6.3 released.
+
+	* release.rb: there is no reason to ``make clean'' in the docs
+	directory, so we don't do it anymore.
+
+	* nqxml/entities.rb (Comment.initialize): regex that grabs text
+	from comment now spans newlines.
+
+	* tests/tokenizertester.rb (test_comment_with_newline_bug): added
+	this routine to test bug reported by Dan Munk.
+
+	* nqxml/tokenizer.rb (nextDoctype): when comment start found, skip
+	leading dashes.
+	(nextBangTag): ditto.
+	(nextComment): slurped text no longer includes leading dashes.
+
+2001-05-16  Jim Menard  <jimm@io.com>
+
+	* nqxml/document.rb (initialize): set @doctype and @rootNode to
+	nil.
+
+	* Version 0.6.2 released.
+
+	* nqxml/tokenizer.rb: changed ``+='' to ``<<'' when concatenating
+	values onto the end of a string. This is more efficient.
+
+	* nqxml/entities.rb: changed ``+='' to ``<<'' when concatenating
+	values onto the end of a string. This is more efficient.
+
+2001-04-24  Jim Menard  <jimm@io.com>
+
+	* docs/README.sgml: added missing backslashes before newline chars
+	in example code.
+
+2001-04-16  Jim Menard  <jimm@io.com>
+
+	* nqxml/entities.rb (isTagStart): created. Also added aliases
+	:tagStart? and :tagEnd?.
+
+	* Version 0.6.1 released.
+
+2001-04-10  Jim Menard  <jimm@io.com>
+
+	* docs/sgml2text.rb: substitute '&amp;' after all the other
+	predefined entities so we don't turn '&amp;lt;' into '<'.
+
+	* nqxml/tokenizer.rb (textUpTo): use regexp instead of array.
+	(nextText): use regexp instead of array in call to textUpTo. Added
+	comment explaining why eof check must come before peekChar call.
+	(normalizeAttributeValue): tweaked for much better performance.
+
+2001-04-09  Jim Menard  <jimm@io.com>
+
+	* nqxml/tokenizer.rb general performance enhancements (cache
+	current input and input's string length).
+	(nextQuotedLiteral): moved check for '<' into
+	normalizeAttributeValue().
+	(normalizeAttributeValue): check for '<' in general entities but
+	not predefined or character entities. Frankly, this confuses me.
+	The XML spec (section 3.3.3) seems to outlaw '<' characters in
+	attribute values completely, but expat definitely accepts them
+	when they appear as character or predefined entities.
+	
+	* install.rb: added `--install-dir' command line option.
+
+	* INSTALL: added description of `--install-dir' command line
+	option.
+
+	* Version 0.6.0 released.
+	
+	* examples/parseTestStream.rb: removed retry after parser errors.
+	The parser usually gets too confused to continue.
+
+	* examples/parseTestTree.rb: removed retry after parser errors.
+	The parser usually gets too confused to continue.
+
+	* nqxml/tokenizer.rb (nextText): completely rewritten to fix bug
+	where '&lt;' at beginning of text was substituted, then code
+	thought a tag was starting there instead of passing through a
+	literal '<'.
+	(replaceAllRefsButParams): renamed from `replaceRefs'.
+
+	* nqxml/entities.rb (NamedAttributes.attributesToXML): encode
+	attribute values.
+	(Tag.to_s): override simple source printing.
+
+2001-04-06  Jim Menard  <jimm@io.com>
+
+	* tests/writertester.rb: changed to reflect attribute tag handling.
+
+	* tests/testresource.rb: @xml adds complex attribute value to a
+	tag so we can test attribute value normalization. Text objects no
+	longer pass XML source of text to constructors, except if they are
+	CDATA. That's what happens when the tokenizer builds normal text
+	and CDATA entities.
+
+	* examples/reverseTags.rb: since text entities are no longer
+	created with :source text when a document is parsed, we need
+	to write the encoded text instead.
+
+	* nqxml/entities.rb: Text entities no longer consider the :source
+	attribute when comparing themselves. See next item for the reason.
+
+	* nqxml/tokenizer.rb: renamed :generatedNegToken to
+	:generatedEndTag. Rewritten to use a stack of input streams.
+	(nextText): stopped giving XML source to Text entity constructor.
+	This is because we can't keep track of the source during the
+	complex process of general entity substitution (where new XML tags
+	may be introduced in the middle of the text, for example).
+	(skipSpaces): if spaces reach to end of current input stream,
+	pop the stack and continue looking for spaces in the next input
+	stream.
+	(replaceParamRefs): created to handle parameter entity reference
+	substitution within entity values.
+	(nextEntityTag): added call to replaceParamRefs().
+	(normalizeAttributeValue): created.
+	(initialize): line breaks in xml text normalized to #A. This
+	allows us to use "\n" everywhere else in the tokenizer code, too.
+
+2001-04-05  Jim Menard  <jimm@io.com>
+
+	* tests/testresource.rb: changed class of @entityTag to
+	GeneralEntityTag.
+
+	* nqxml/entities.rb: added two new subclasses of EntityTag:
+	GeneralEntityTag and ParameterEntityTag.
+	(Comment.initialize): stopped interpreting contents of comments.
+
+	* nqxml/tokenizer.rb (nextDeclSep): created to handle parameter
+	entity references in DTD.
+	(nextEntityTag): now recognizes parameter entity definitions and
+	returnes one of GeneralEntityTag or ParameterEntityTag.
+	(nextComment): disallow illegal comment ending string '--->'. When
+	seen, a warning is printed to $stderr.
+	(replaceEntityRefs): moved here from utils.rb because (a) only
+	tokenizer should replace entity refs and (b) raising a parser
+	error, newly added, requires a reference to the tokenizer anyway.
+	(nextProcessingInstruction): do not allow space between '<?' and
+	processing instruction name.
+
+2001-04-04  Jim Menard  <jimm@io.com>
+
+	* tests/tokenizertester.rb: fixed incorrect but harmless extra
+	block parameters to Tokenizer.each() calls.
+
+	* nqxml/utils.rb (replacePredefinedEntityRefs): separated out some
+	of replaceEntityRefs() into this new method.
+	(replaceCharacterRefs): separated out some of replaceEntityRefs()
+	into this new method.
+	(replaceEntityRefs): fixed regexp so '&&foo;' will correctly see
+	'&foo;'.
+
+	* nqxml/tokenizer.rb (nextEntityTag): ignore redefinition of
+	entities, and print warning message. When reading an entity value,
+	only parse character references ("&#38;"), nothing else.
+
+	* docs/README.sgml: reorganization, list of well-formedness rules
+	not yet implemented, more.
+
+	* nqxml/utils.rb (NQXML.replaceEntityRefs): made regexp for
+	'&#xNN;' case-insensitive.
+
+	* nqxml/tokenizer.rb (nextTagAttributes): added well-formedness
+	check for '<' in attribute values.
+
+2001-04-03  Jim Menard  <jimm@io.com>
+
+	* nqxml/domparser.rb: added warning message.
+
+	* release.rb: added check for up-to-date version numbers in a few
+	doc files.
+
+	* docs/sgml2text.rb: added section and example numbers, fixed
+	sect3 and xrefs. No longer rely on hard-coded list of entity
+	definitions; read them from SGML ENTITY tags.
+
+2001-03-30  Jim Menard  <jimm@io.com>
+
+	* docs/README.sgml: minor edits.
+
+	* Version 0.5.1 released.
+
+	* nqxml/entities.rb (Text.to_s): fixed Text.to_s to return text,
+	not source.
+	(Text.writeXMLTo): created to override the Entity version. Writes
+	source if available; else writes encoded text.
+
+	* tests/writertester.rb (test_writer): make sure writers properly
+	encode special characters within text entity strings.
+
+	* nqxml/utils.rb: created to hold methods useful for all but until
+	recently held by the privileged few.
+
+	* docs/README.sgml: updated to reflect the addition of epilogue to
+	Document.
+
+	* nqxml/treeparser.rb: three states define location in document:
+	prolog, body, or epilogue.
+	(handleNextEntity): split up into separate methods for easier
+	readability.
+
+	* nqxml/document.rb: added `:epilogue' attribute that holds
+	comment, processing instruction, and white space elements that
+	appear after the root node has closed (that is, at the end of the
+	document).
+	(addToProlog): fixed erroneous comment that said the tokenizer
+	checked for certain entity types. It's really the tree parser.
+	Removed useless commented-out code.
+	(addToEpilogue): added.
+
+2001-03-29  Jim Menard  <jimm@io.com>
+
+	* docs/README.html: created so it can redirect from old URL at
+	that location to the new README/t1.html.
+
+	* docs/Makefile: reduced number of unnecessary warnings. Changed
+	flags so HTML is generated as a directory with multiple HTML files
+	instead of one big HTML file. Added `pdf' and `rtf' targets.
+
+	* release.rb: as below: make sure we see the local version of
+	info.rb instead of any previously installed one. Also modified to
+	handle the HTML directory that contains the newly-expanded HTML
+	version of the README file.
+
+	* Version 0.5.0 released.
+
+	* examples/*.rb: push '..' on to the front of $LOAD_PATH so we see
+	the local version of NQXML instead of a previously installed one.
+
+	* tests/test.rb: push '..' on to the front of $LOAD_PATH instead
+	of at end. This way, even if there is an old version of NQXML
+	installed we will run the one in this directory.
+
+	* INSTALL: changed dir name `examples' to `tests'.
+
+	* nqxml/document.rb: more argument error checking. Raise
+	ArgumentError if certain arguments are nil.
+
+	* nqxml/treeparser.rb (handleNextEntity): ignore whitespace
+	outside of root node.
+
+	* everywhere: changed entity constructors' argument orders and
+	added default values to some paramaters to make manual creation of
+	entities (therefore document objects) easier.
+
+	* nqxml/entities.rb (NamedAttributes): factored entities out of
+	Tag and ProcessingInstruction classes into a new NamedAttributes
+	superclass.
+	(NamedAttributes#attributesToXML): returns a string containing the
+	attributes as XML.
+
+2001-03-28  Jim Menard  <jimm@io.com>
+
+	* nqxml/document.rb: created in order to separate the Document and
+	Node classes from the tree parser.
+
+	* tests/writertester.rb: Added test_string_arg and test_array_arg
+	methods.
+
+	* release.rb (WEB_DIR): requires and calls generateManifest.
+
+	* generateManifest.rb: created.
+
+	* nqxml/writer.rb: Changed from using `@io.print "foo"' to
+	`@io << "foo"'. This way, IO, String, and Array objects may now
+	be arguments to the Writer constructor.
+
+	* tests/test.rb: split class Tester into a superclass and multiple
+	subclasses that test the four major NQXML classes (tokenizer,
+	streaming and tree parsers, and writer) and more.
+
+	* tests/*: moved test.rb into this new subdirectory.
+
+	* everywhere: renamed `DOMParser' class to `TreeParser'. To keep
+	old scripts from breaking for now, there is still a `DOMParser'
+	class that inherits from `TreeParser' and adds nothing else.
+	`parseTestDOM.rb' renamed to `parseTestTree.rb'.
+
+	* Version 0.4.2 released.
+
+2001-03-23  Jim Menard  <jimm@io.com>
+
+	* release.rb: generate documents and clean up before creating
+	.tar.gz file. Munged ftp code.
+
+	* Manifest: just keepin' it up to date.
+
+	* docs/index.html: modified to refer to README.html (generated
+	from README.sgml) instead of including that text.
+
+	* docs/Makefile: created for making README and docs/README.html.
+
+	* docs/sgml2text.rb: created for translating README.sgml into
+	README.
+
+	* docs/README.sgml: created DocBook version of README.
+
+	* examples/data.xml: fixed malformed XML.
+
+	* examples/parseTestDOM.rb: exception handling fixed.
+
+	* examples/parseTestStream.rb: exception handling fixed.
+
+	* examples/reverseTags.rb: exception handling fixed.
+
+	* examples/reverseText.rb: exception handling fixed. Was using old
+	error class name.
+
+	* examples/printEntityClassNames.rb: created.
+
+2001-03-22  Jim Menard  <jimm@io.com>
+
+	* README: typed more words. Fixed examples.
+
+	* docs/index.html: reformatted to fit my Web site and added colors
+	to code comments. Added the words and fixes from README.
+
+	* Version 0.4.1 released.
+
+2001-03-19  Jim Menard  <jimm@io.com>
+
+	* docs/index.html: added ``Writing XML'' section and fleshed out
+	the list of examples.
+
+	* README: added ``Writing XML'' section.
+
+2001-03-13  Jim Menard  <jimm@io.com>
+
+	* nqxml/streamingparser.rb (each): turned node stack
+	`lastSeenTagNameStack' and a few other method-local variables into
+	instance variables.
+
+	* nqxml/domparser.rb (initialize): tured node stack `nodeStack'
+	and a few other method-local variables into instance variables.
+
+2001-03-12  Jim Menard  <jimm@io.com>
+
+	* examples/write.rb: created.
+
+	* test.rb: added tests for new Writer and WriterError classes.
+
+	* nqxml/writer.rb: created; contains new Writer class.
+
+	* nqxml/error.rb: added WriterError class.
+
+	* release.rb: created.
+
+2001-03-11  Jim Menard  <jimm@io.com>
+
+	* nqxml/tokenizer.rb (peekMatches?): renamed from `peekMatches',
+	and renamed all calls to this method. Created alias to old name.
+	(eof?): renamed from `atEnd', and renamed all calls. Created alias
+	to old name and to `eof' (with no question mark).
+
+	* nqxml/parser.rb (eof?): renamed from `atEnd', and renamed all
+	calls. Created alias to old name and to `eof' (with no question
+	mark).
+
+2001-03-09  Jim Menard  <jimm@io.com>
+
+	* nqxml/streamingparser.rb (each): added some well-formedness
+	checks.
+
+	* nqxml/tokenizer.rb: added some well-formedness checks and consts
+	NOT_SPACES_REGEX and PUBLIC_ID_LITERAL_REGEX.
+	(skipSpaces): use NOT_SPACES_REGEX.
+	(nextDoctype): added check for legal PUBLIC extern id literal
+	chars.
+	(nextPublicIdLiteral): added this method.
+
+	* Version 0.4.0 released.
+
+	* test.rb: added `expect_dom_error' and related tests.
+	(expect_tokenizer_error): check exception line, col, and pos.
+	(expect_streaming_error): ditto.
+	(expect_dom_error): ditto.
+
+	* README: updated examples.
+
+	* docs/index.html: updated examples.
+
+	* nqxml/tokenizer.rb (column): added column method.
+	(initialize): made sure @pos set before checking argument type.
+
+	* everywhere: renamed `SAXParser' class to `StreamingParser'.
+	(everywhere): added tokenizer argument to all calls to ParserError
+	constructors.
+
+	* nqxml/error.rb (initialize): added `readStream' argument and
+	readable :line, :column, and :pos attributes.
+
+2001-03-08  Jim Menard  <jimm@io.com>
+
+	* data.xml: created.
+
+	* nqxml/entities.rb (Text#to_s): created this method to override
+	Entity#to_s by returning the value of the @text attribute (instead
+	of the original XML source, which may contain other entities like
+	&lt;). You can always call Text#source to get the original.
+
+	* examples/reverseTags.rb: created. 
+
+	* examples/reverseText.rb: created. 
+
+	* doc.xml: Added a few tags, attributes, and values.
+
+	* examples/dumpXML.rb: rewrote to use Ruby's feature of adding
+	methods to already-existing classes.
+
+	* nqxml/info.rb: Version string corrected (had "{VERSION_TWEAK}"
+	instead of "#{VERSION_TWEAK}").
+
+	* Version 0.3.0 released.
+
+	* examples/dumpXML.rb: created.
+
+	* nqxml/tokenizer.rb (initialize): renamed `ioOrString' to
+	`stringOrReadable'.
+	(nextTagAttributes): created by factoring code from `nextTag' and
+	`nextProcessingInstruction'.
+
+	* nqxml/saxparser.rb (initialize): renamed `ioOrString' to
+	`stringOrReadable'.
+
+	* nqxml/parser.rb (initialize): renamed `ioOrString' to
+	`stringOrReadable'.
+
+	* nqxml/domparser.rb (initialize): renamed `ioOrString' to
+	`stringOrReadable'.
+
+	* README: renamed params in example code from `io_or_string' to
+	`string_or_readable'.
+
+	* docs/info.html: renamed params in example code from
+	`io_or_string' to `string_or_readable'. General updates.
+
+2001-03-07  Jim Menard  <jimm@io.com>
+
+	* nqxml/tokenizer.rb added tag name to many error messages.
+	(nextTag): added constraint that no attribute name may appear
+	twice in the same start tag.
+	(nextProcessingInstruction): ditto.
+	(line): new method that returns current line number in XML.
+	(nextDoctype): DOCTYPE's external id PUBLIC takes two args, SYSTEM
+	takes one arg. I had it backwards.
+	
+	* test.rb (test_tokenizer_twin_attrs): added this test for the
+	well-formedness constraint that no attribute name may appear twice
+	in the same start tag or processing instruction.
+	(expect_tokenizer_error): modified to take optional line number
+	argument; if used, error must appear on the specified line.
+	(expect_sax_error): ditto.
+	(initReadOnlyVars): changed `PUBLIC' to `SYSTEM' in XML (related
+	to bug where I had arguments to these reversed).
+	(test_entity_replacement): renamed from `test_string_extension'.
+
+	* examples/parserTestSAX.rb (testParser): report line number on
+	error.
+
+	* examples/parserTestDOM.rb (testParser): report line number on
+	error.
+
+	* nqxml/parser.rb (line): new method that passes request to
+	tokenizer.
+
+	* README: add link to Ruby's license. General updates.
+
+	* nqxml/*.rb: added copyright and license notices.
+	
+	* nqxml/info.rb: created.
+
+	* Version 0.2.2 released.
+
+	* nqxml/tokenizer.rb (initialize): changed the way the type of the
+	ioOrString argument to Tokenizer#initialize() is checked. Only
+	Strings (or subclasses of String) or objects that have a 'read'
+	method are allowed. Illegal argument exception text changed. From
+	a bug report by David Alan Black.
+
+	* test.rb (expect_tokenizer_error): created as a parallel to
+	`expect_sax_error' test.
+
+	* Version 0.2.1 released.
+
+	* docs/index.html: fixed documentation bugs reported by David Alan
+	Black.
+
+	* README: fixed documentation bugs reported by David Alan Black.
+	Deleted incorrect statement about entities within DOCTYPE tags
+	being yielded before the DOCTYPE tag itself.
+
+	* Version 0.2 released.
+
+	* test.rb: changed tests because the SAX parser now yields entity
+	instead of type, name, and data). Reorganized testing based on
+	realization that tokenizer and SAX and DOM parsers return results
+	in different orders.
+	(initReadOnlyVars): added test XML for ELEMENT, ATTLIST, and
+	NOTATION entities.
+
+	* nqxml/saxparser.rb (each): stopped yielding type, name, and data
+	(like expat does). Instead, we now yield the entity object itself.
+	(each): added code to send ENTITY, ELEMENT, ATTLIST, and NOTATION
+	entites. Note that these are sent before the DOCTYPE is sent
+	because we have not yet seen the end of the DOCTYPE tag.
+
+	* nqxml/entities.rb: created new classes Element, Attlist, and
+	Notation. These are simple version that store all attributes and
+	data as a single text blob. Future versions will implement these
+	classes correctly.
+
+	* nqxml/entities.rb: factored out :name attribute by creating new
+	subclass of Entity called NamedEntity.
+
+2001-03-06  Jim Menard  <jimm@io.com>
+
+	* test.rb: wrote tests for DOM that helped catch a few bugs.
+
+	* nqxml/parser.rb: moved SAX and DOM parsers into separate files
+	saxparser.rb and domparser.rb. You now have to require
+	'nqxml/saxparser' and/or require 'nqxml/domparser', where before
+	you could just require 'nqxml/parser'. This saves having to load
+	an unwanted parser. It also cleans up the code.
+
+	* examples: created directory and moved parseTest.rb there.
+
+	* nqxml/tokenizer.rb: started writing code to handle the ELEMENT,
+	  ATTLIST, and NOTATION tags, processing instructions, and
+	  comments within DOCTYPE tags.
+
+	* install.rb: fixed bad call of Find.find() (reported by TAKAHASHI
+	  'Maki' Masayoshi).
+
+	* nqxml/entities.rb: removed unused attributes :isTag, :isComment,
+	etc. from Entity class and subclasses.
+
+	* ./: added Manifest and Credits files.
+
+2001-03-05  Jim Menard  <jimm@io.com>
+
+	* test.rb: wrote tests for DOCTYPE and ENTITY tags and for entity
+	replacement within text.
+
+	* nqxml/tokenizer.rb: added code to replace entities defined with
+	  the <!ENTITY ...> tag when they are seen in text.
+
+	* nqxml/tokenizer.rb: started writing code to handle the DOCTYPE
+	  tag and ENTITY tags within DOCTYPE.
+
+	* nqxml/entities.rb: added Entity subclasses EntityTag
+	(<!ENTITY...>) and Doctype (<!DOCTYPE ...>)
+	
+	* nqxml/tokenizer.rb: renamed `Tokenizer#nextAttributeValue' to
+	  `Tokenizer#nextQuotedLiteral'.
+
+	* nqxml/parser.rb: renamed Parser attribute :token to :entity.
+
+	* nqxml/entities.rb: renamed Token class to Entity.
+
+	* nqxml/entities.rb: created from classes formerly defined in
+	nqxml/tokenizer.rb.
+
+	* Version 0.1 released. Initial release.
